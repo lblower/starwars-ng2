@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="col-md-12">
+    <form class="well">
+      <div class="form-group">
+        <label for='personName'> Enter Number:</label>
+        <input type="number" min=0 max=200 class="form-control" placeholder="Enter a number"  [(ngModel)]="personName"  name="personName" (keyup)='searchPerson()'  />
+      </div>
+
+    </form>
+  </div>
+<div class="clearfix"></div>
+<div class="col-md-6 col-sm-12 col-xl-4">
+<div *ngIf = "person && !person.detail ; else noPerson" class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">StarWars Person</h3>
+  </div>
+  <div class="panel-body">
+    <div class="container-fluid">
+
+
+      <dl>
+      <dd class="col-md-6">Name:  </dd> <dt  class="col-md-6"> {{person.name}} </dt>
+        <dd class="col-md-6"> Gender:  </dd> <dt  class="col-md-6">  {{person.gender}} </dt>
+        <dd class="col-md-6">Birth Info:</dd>  <dt  class="col-md-6"> {{person.birth_year}} </dt>
+
+        <dd class="col-md-6">Height:</dd>  <dt  class="col-md-6"> {{person.height}} </dt>
+        <dd class="col-md-6">Mass:  </dd> <dt  class="col-md-6"> {{person.mass}} </dt>
+
+
+
+      <dd class="col-md-6">EyeColor: </dd> <dt  class="col-md-6"> {{person.skin_color}}</dt>
+      <dd class="col-md-6">HairColor:</dd> <dt  class="col-md-6"> {{person.hair_color}}</dt>
+
+    </dl>
+  </div>
+</div>
+</div>
+<div id='noPerson'><h1>No Character Found</h1> </div>
+<hr/>
+<!-- Static Method -->
+<h2> Static Method</h2>
+  <ul *ngFor = "let person of people"  class="list-unstyled" >
+    <li> <a href='#' (click)='selectPerson(person)' class="text-justify btn btn-primary" > {{person.name }} </a></li>
+  </ul>
+
+  <app-person-details [person]="selectedPerson"></app-person-details>
